@@ -1,0 +1,156 @@
+<html lang="ja">
+
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+
+  <style>
+    .eye {
+      font-size: 30vmin;
+      text-align: center;
+      color: black;
+    }
+
+    .nose {
+      font-size: 10vmin;
+      text-align: center;
+      color: orange;
+    }
+
+    .mouth {
+      font-size: 20vmin;
+      text-align: center;
+      color: red;
+    }
+  </style>
+
+  <script>
+    var voiceA;
+    var voiceB;
+    var voiceC;
+    var voiceD;
+    var voiceBack;
+    var voiceEnter;
+
+    function defaultFace() {
+      setFaces('・', '・', 'ゝ', 'ー')
+    }
+
+    function smile() {
+      setFaces('^', '^', 'ゝ', 'ϖ')
+      setTimeout(defaultFace, 1000)
+    }
+
+    function speech(voice) {
+      setFaces('・', '・', 'ゝ', 'O')
+      voiceSpeach(voice);
+      setTimeout(smile, 1000)
+    }
+
+    function painful() {
+      setFaces('×', '×', '.', '□');
+      setTimeout(defaultFace, 1000)
+    }
+
+    function setFaces(left_eye, right_eye, nose, mouth) {
+      for (var element of document.getElementsByClassName("left_eye")) {
+        element.innerText = left_eye;
+      }
+      for (var element of document.getElementsByClassName("right_eye")) {
+        element.innerText = right_eye;
+      }
+      for (var element of document.getElementsByClassName("nose")) {
+        element.innerText = nose;
+      }
+      for (var element of document.getElementsByClassName("mouth")) {
+        element.innerText = mouth;
+      }
+    }
+
+    function voiceSpeach(voice) {
+      if (voice) {
+        voice.play();
+      }
+    }
+
+    function loadAudio() {
+      voiceA = document.getElementById('voiceA');
+      voiceA.load();
+      voiceB = document.getElementById('voiceB');
+      voiceB.load();
+      voiceC = document.getElementById('voiceC');
+      voiceC.load();
+      voiceD = document.getElementById('voiceD');
+      voiceD.load();
+      voiceBack = document.getElementById('voiceBack');
+      voiceBack.load();
+      voiceEnter = document.getElementById('voiceEnter');
+      voiceEnter.load();
+      
+    }
+
+    window.changeFace = function (type) {
+      console.log('changeFace: ' + type)
+
+      switch (type) {
+        case 'faceA': {
+          speech(voiceA);
+        } break;
+        case 'faceB': {
+          speech(voiceB);
+        } break;
+        case 'faceC': {
+          speech(voiceC);
+        } break;
+        case 'faceD': {
+          speech(voiceD);
+        } break;
+        case 'faceBack': {
+          speech(voiceBack);
+        } break;
+        case 'faceEnter': {
+          speech(voiceEnter);
+        } break;
+      }
+    }
+
+    function onload() {
+      defaultFace();
+    }
+  </script>
+
+</head>
+
+<body style="align-items: center;position: relative; background-color: bisque" onload="onload();" onclick="loadAudio()">
+
+  <table style="margin: auto; position: absolute;top: 0; bottom: 0; right: 0; left: 0; width: 90vw; height: 90vh; " border="0">
+    <tr>
+      <td style="width: 30vw"><div class="eye left_eye" id="left_eye"></div></td>
+      <td style="width: 10vw"></td>
+      <td style="width: 30vw"><div class="eye right_eye" id="right_eye"></div></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><div class="nose"></div></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><div class="mouth"></div></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <audio id="voiceA" src="voiceA.ogg" preload="auto"></audio>
+  <audio id="voiceB" src="voiceB.ogg" preload="auto"></audio>
+  <audio id="voiceC" src="voiceC.ogg" preload="auto"></audio>
+  <audio id="voiceD" src="voiceD.ogg" preload="auto"></audio>
+  <audio id="voiceBack" src="voiceBack.ogg" preload="auto"></audio>
+  <audio id="voiceEnter" src="voiceEnter.ogg" preload="auto"></audio>
+
+  <script src="aws-iot-sdk-browser-bundle.js"></script>
+  <script src="bundle.js"></script>
+
+</body>
+
+</html>

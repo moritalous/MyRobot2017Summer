@@ -1,0 +1,20 @@
+{
+  "name": "20170810_WEB",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "browserize": "cd node_modules/aws-iot-device-sdk && ./scripts/browserize.sh",
+    "liveserver": "live-server --no-browser",
+    "build": "npm run browserize `pwd`/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-iot-device-sdk": "^2.0.1",
+    "browserify": "^14.4.0",
+    "live-server": "^1.2.0"
+  }
+}
